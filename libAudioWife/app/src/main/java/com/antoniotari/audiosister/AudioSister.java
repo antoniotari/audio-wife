@@ -29,6 +29,7 @@ public class AudioSister {
     private WeakReference<SeekBar> weakSeekBar;
     private String playUrl;
     private String currentNotificationText="";
+    private int currentDurationSeconds = -1;
     private Class currentActivityClass;
     private int currentForegroundDrawable;
     private MediaPlayer.OnCompletionListener completionListener;
@@ -101,18 +102,19 @@ public class AudioSister {
         }
     }
 
-    public void playNew(String streamUrl,String notificationText){
+    public void playNew(String streamUrl, String notificationText, int durationSeconds){
         if(wifeService!=null) {
             currentNotificationText = notificationText;
+            currentDurationSeconds = durationSeconds;
             playUrl = streamUrl;
             initializeWifeService();
-            wifeService.play(currentActivityClass, currentNotificationText, currentForegroundDrawable);
+            wifeService.play(currentActivityClass, currentNotificationText, currentDurationSeconds, currentForegroundDrawable);
         }
     }
 
     public void playCurrent(){
         if(wifeService!=null) {
-            wifeService.play(currentActivityClass, currentNotificationText, currentForegroundDrawable);
+            wifeService.play(currentActivityClass, currentNotificationText, currentDurationSeconds, currentForegroundDrawable);
         }
     }
 

@@ -68,6 +68,7 @@ public class AudioWife{
 	private Handler mediaButtonHandler;
 
 	private MediaPlayer mMediaPlayer;
+	private long duration = -1L;
 
 	private SeekBar mSeekBar;
 
@@ -268,14 +269,10 @@ public class AudioWife{
 		// show total duration.
 		long totalDuration = 0;
 
-		if (mMediaPlayer != null) {
-			try {
-				totalDuration = mMediaPlayer.getDuration();
-			} catch (IllegalStateException e) {
-				e.printStackTrace();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+		try {
+			totalDuration = getDuration();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 
 		// set total time as the audio is being played
@@ -328,19 +325,14 @@ public class AudioWife{
 
 		// by this point the media player is brought to ready state
 		// by the call to init().
-		if (mMediaPlayer != null) {
-			try {
-				totalDuration = mMediaPlayer.getDuration();
-			} catch (IllegalStateException e) {
-				e.printStackTrace();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+		try {
+			totalDuration = getDuration();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 
 		if (totalDuration < 0) {
-            totalDuration=0;//TODO should I throw exception?
-			//throw new IllegalArgumentException(ERROR_PLAYTIME_TOTAL_NEGATIVE);
+            totalDuration=0;
 		}
 
 		// set total time as the audio is being played
@@ -349,6 +341,18 @@ public class AudioWife{
 		}
 
 		mTotalTime.setText(playbackStr);
+	}
+
+	private long getDuration() {
+		long dur = -1;
+		if (mMediaPlayer != null) {
+			dur = mMediaPlayer.getDuration();
+		}
+
+		if (dur <= 0) {
+			dur = duration;
+		}
+		return dur;
 	}
 
 	/***
@@ -892,5 +896,10 @@ public class AudioWife{
 			mMediaPlayer = null;
 			mProgressUpdateHandler = null;
 		}
+		duration = -1L;
+	}
+
+	public void setDuration(long duration) {
+		this.duration = duration;
 	}
 }

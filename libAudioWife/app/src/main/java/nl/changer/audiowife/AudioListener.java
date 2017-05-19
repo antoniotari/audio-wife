@@ -11,7 +11,7 @@ import android.widget.TextView;
  */
 public interface AudioListener {
     public void init(String currentUrl,View playBtn,View stopBtn,SeekBar seekBar,TextView elapsed,TextView totalTime,MediaPlayer.OnCompletionListener completionListener);
-    public void play(Class theActivity,String songName,int iconRes);
+    public void play(Class theActivity,String songName,int durationSeconds,int iconRes);
     public void pause();
     public void release();
 }

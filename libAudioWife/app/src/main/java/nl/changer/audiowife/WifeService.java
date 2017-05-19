@@ -240,7 +240,8 @@ public class WifeService extends Service implements AudioListener,ForegroundNoti
     }
 
     @Override
-    public void play(Class theActivity,String songName,int iconRes) {
+    public void play(Class theActivity,String songName,int durationSeconds, int iconRes) {
+        AudioWife.getInstance().setDuration(durationSeconds * 1000L);
         AudioWife.getInstance().play();
         showForegroundControls(theActivity,songName,iconRes);
     }
