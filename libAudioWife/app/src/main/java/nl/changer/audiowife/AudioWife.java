@@ -699,7 +699,7 @@ public class AudioWife{
 		}
 
 		// update seekbar
-		long finalTime = mMediaPlayer.getDuration();
+		long finalTime = getDuration();
 		mSeekBar.setMax((int) finalTime);
 
 		mSeekBar.setProgress(0);
