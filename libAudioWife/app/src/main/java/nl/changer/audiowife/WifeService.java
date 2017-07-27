@@ -212,6 +212,8 @@ public class WifeService extends Service implements AudioListener,ForegroundNoti
                 .setTicker(songName)
                 .setContentTitle(getApplicationInfo().loadLabel(getPackageManager()).toString())
                 .setContentText("Playing: " + songName)
+                .addAction(NotificationMediaControls.getPlayAction(this))
+                .addAction(NotificationMediaControls.getPauseAction(this))
                 .build();
         _currentNotification.flags |= Notification.FLAG_ONGOING_EVENT;
         showNotification();
