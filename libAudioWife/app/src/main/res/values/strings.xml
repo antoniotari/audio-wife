@@ -1,5 +1,7 @@
 <resources>
 
     <string name="app_name">LibAudioWife</string>
+    <string name="play_button">play</string>
+    <string name="pause_button">pause</string>
 
 </resources>
