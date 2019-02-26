@@ -79,6 +79,29 @@ public class HeadsetActionButtonReceiver extends BroadcastReceiver {
         if (keyEvent == null || keyEvent.getAction() != KeyEvent.ACTION_DOWN) {
             return;
         }
+        
+        switch (keyEvent.getKeyCode()) {
+            case KeyEvent.KEYCODE_MEDIA_PLAY:
+                delegate.onMediaButtonSingleClick();
+                return;
+                break;
+            case KeyEvent.KEYCODE_MEDIA_PAUSE:
+                delegate.onMediaButtonSingleClick();
+                return;
+                break;
+            case KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE:
+                delegate.onMediaButtonSingleClick();
+                return;
+                break;
+            case KeyEvent.KEYCODE_MEDIA_NEXT:
+                delegate.onMediaButtonDoubleClick();
+                return;
+                break;
+            case KeyEvent.KEYCODE_MEDIA_PREVIOUS:
+                delegate.onMediaButtonTripleClick();
+                return;
+                break;
+        }
 
         counter++;
         if (doublePressTimer != null) {
